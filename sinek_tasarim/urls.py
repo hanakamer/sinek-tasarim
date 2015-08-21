@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from products.views import (index, products_view, register_user, login_user, logout_user, product_detail, product_like)
 
 urlpatterns = [
+    url(r'^$', index, name='home'),
+    url(r'^products/(?P<product_id>[0-9]+)/$', product_detail,name= 'product_detail'),
+    url(r'^products$', products_view, name='products'),
+    url(r'^login', login_user, name='login'),
+    url(r'^register$', register_user, name='register'),
+    url(r'^logout', logout_user, name='logout'),
+    url(r'^products/(?P<product_id>[0-9]+)/like$', product_like, name='like'),
     url(r'^admin/', include(admin.site.urls)),
+
 ]
+
+

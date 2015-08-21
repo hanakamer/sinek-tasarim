@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    {% load  static %}
+    <meta charset="UTF-8">
+    <title>Sinek Tasarim</title>
+    <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+<header>
+<ul class="user-auth">
+    {% if user.is_authenticated %}
+        <li>Merhaba {{ user }}!!</li>
+        <li><a href="{% url "logout" %}">Logout</a></li>
+    {% else %}
+        <li><a href="{% url "register" %}">Register</a></li>
+        <li><a href="{% url "login" %}">Login</a></li>
+    {% endif %}
+</ul>
+<div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+</div>
+
+    <h3>SINEK TASARIM</h3>
+{% if user.is_authenticated %}
+
+{% endif %}
+    <nav>
+        <ul>
+    <li><a href="{% url "home" %}">Home</a> </li>
+    <li><a href="{% url "products" %}">Products</a></li>
+
+
+    <li> <a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div id="container">
+
+    {% block content %}
+    {% endblock %}
+</div>
+<div class="clear"></div>
+<footer>
+    hello
+</footer>
+</body>
+</html>

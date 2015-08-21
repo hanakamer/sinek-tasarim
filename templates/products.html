@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="{% url "products" %}" method="get">
+    <p>
+        <input type="text" name="title" placeholder="search...">
+        <input type="submit" value="search">
+    </p>
+</form>
+
+{% for obj in objects %}
+    <div class="product">
+    {{ obj.likes.count }}
+    <div class="product-title">{{  obj.title }}</div>
+    <div class="product-img"><a href="{% url 'product_detail' obj.id %}"> <img src="{{obj.image}}"></a></div>
+    <div class="product-description">{{ obj.description }}</div>
+    {{ obj.price }}
+        <form action="{% url 'like' obj.id %}" method="post" >{% csrf_token %}
+            {% if user.id in obj.liked_user_ids %}
+                <input type="submit" value=" "  id="unlike">
+
+            {% else %}
+                <input type="submit" value=" " id="like">
+
+            {% endif %}
+        </form>
+
+    </div>
+{% endfor %}
+{% endblock %}
